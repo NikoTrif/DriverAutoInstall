@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace DriverAutoInstall
 {
@@ -23,15 +24,75 @@ namespace DriverAutoInstall
 
         private void dDelCtrl_Click(object sender, EventArgs e)
         {
-
+            Button b = sender as Button;
+            b.Parent.Dispose();
         }
 
         private void dBrowse_Click(object sender, EventArgs e)
         {
+            TableLayoutPanel tTlp = (sender as Button).Parent as TableLayoutPanel;
 
+            try
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog
+                {
+                    Filter = "Executable|*.exe|All Files|*.*",
+                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+                })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        Upis(tTlp, ofd.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void dParHelp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flpDriveri_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void flpDriveri_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+
+        }
+
+        private void dUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dDown_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dInstall_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dSaveXml_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dImpXml_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dExit_Click(object sender, EventArgs e)
         {
 
         }
@@ -169,34 +230,28 @@ namespace DriverAutoInstall
             flpDriveri.Controls.Add(tableLayoutPanel1);
         }
 
-        private void dUp_Click(object sender, EventArgs e)
+        private void Upis(TableLayoutPanel tlp, string Putanja = "")
         {
+            // FileVersionInfo se koristi za citanje Details kartice iz properties-a fajla
+            FileVersionInfo fvi;
 
-        }
-
-        private void dDown_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dInstall_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dSaveXml_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dImpXml_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dExit_Click(object sender, EventArgs e)
-        {
-
+            try
+            {
+                if (!string.IsNullOrEmpty(Putanja))
+                {
+                    fvi = FileVersionInfo.GetVersionInfo(Putanja);
+                    (tlp.Controls["tbPutanja"] as TextBox).Text = Putanja;
+                    (tlp.Controls["tbNaziv"] as TextBox).Text = fvi.ProductName; 
+                }
+                else
+                {
+                    MessageBox.Show("Putanja programa ne postoji!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

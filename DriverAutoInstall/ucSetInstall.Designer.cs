@@ -38,11 +38,13 @@
             this.dInstall = new System.Windows.Forms.Button();
             this.flpDriveri = new System.Windows.Forms.FlowLayoutPanel();
             this.cmsNaziv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dDown
             // 
-            this.dDown.Location = new System.Drawing.Point(527, 135);
+            this.dDown.Location = new System.Drawing.Point(3, 35);
             this.dDown.Name = "dDown";
             this.dDown.Size = new System.Drawing.Size(29, 26);
             this.dDown.TabIndex = 3;
@@ -52,7 +54,7 @@
             // 
             // dUp
             // 
-            this.dUp.Location = new System.Drawing.Point(527, 103);
+            this.dUp.Location = new System.Drawing.Point(3, 3);
             this.dUp.Name = "dUp";
             this.dUp.Size = new System.Drawing.Size(29, 26);
             this.dUp.TabIndex = 4;
@@ -117,23 +119,42 @@
             // 
             // flpDriveri
             // 
+            this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.flpDriveri.AutoScroll = true;
             this.flpDriveri.Location = new System.Drawing.Point(3, 3);
             this.flpDriveri.Name = "flpDriveri";
             this.flpDriveri.Size = new System.Drawing.Size(518, 277);
             this.flpDriveri.TabIndex = 2;
+            this.flpDriveri.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragDrop);
+            this.flpDriveri.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.flpDriveri_GiveFeedback);
             // 
             // cmsNaziv
             // 
             this.cmsNaziv.Name = "cmsNaziv";
             this.cmsNaziv.Size = new System.Drawing.Size(61, 4);
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.dUp, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dDown, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(527, 93);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(35, 64);
+            this.tableLayoutPanel2.TabIndex = 10;
+            // 
             // ucSetInstall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dDown);
-            this.Controls.Add(this.dUp);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.dExit);
             this.Controls.Add(this.dImpXml);
             this.Controls.Add(this.dSaveXml);
@@ -142,6 +163,7 @@
             this.Controls.Add(this.flpDriveri);
             this.Name = "ucSetInstall";
             this.Size = new System.Drawing.Size(577, 332);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,5 +189,6 @@
         private System.Windows.Forms.TextBox tbParametri;
         private System.Windows.Forms.Button dBrowse;
         private System.Windows.Forms.Button dParHelp;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
