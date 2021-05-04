@@ -59,12 +59,21 @@ namespace DriverAutoInstall
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] fajl = (string[])e.Data.GetData(DataFormats.FileDrop);
 
+                foreach(string s in fajl)
+                {
+                    DodajKontrole();
+                    Upis(flpDriveri.Controls[flpDriveri.Controls.Count -1] as TableLayoutPanel, s);
+                }
+            }
         }
 
-        private void flpDriveri_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        private void flpDriveri_DragEnter(object sender, DragEventArgs e)
         {
-
+            e.Effect = DragDropEffects.Copy;
         }
 
         private void dUp_Click(object sender, EventArgs e)
@@ -248,6 +257,7 @@ namespace DriverAutoInstall
                     MessageBox.Show("Putanja programa ne postoji!", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());

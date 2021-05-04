@@ -37,8 +37,10 @@
             this.dAdd = new System.Windows.Forms.Button();
             this.dInstall = new System.Windows.Forms.Button();
             this.flpDriveri = new System.Windows.Forms.FlowLayoutPanel();
+            this.lDrag = new System.Windows.Forms.Label();
             this.cmsNaziv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.flpDriveri.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,15 +121,28 @@
             // 
             // flpDriveri
             // 
+            this.flpDriveri.AllowDrop = true;
             this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flpDriveri.AutoScroll = true;
+            this.flpDriveri.Controls.Add(this.lDrag);
             this.flpDriveri.Location = new System.Drawing.Point(3, 3);
             this.flpDriveri.Name = "flpDriveri";
             this.flpDriveri.Size = new System.Drawing.Size(518, 277);
             this.flpDriveri.TabIndex = 2;
             this.flpDriveri.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragDrop);
-            this.flpDriveri.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.flpDriveri_GiveFeedback);
+            this.flpDriveri.DragEnter += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragEnter);
+            // 
+            // lDrag
+            // 
+            this.lDrag.AutoSize = true;
+            this.lDrag.Location = new System.Drawing.Point(3, 0);
+            this.lDrag.Name = "lDrag";
+            this.lDrag.Size = new System.Drawing.Size(77, 13);
+            this.lDrag.TabIndex = 11;
+            this.lDrag.Text = "Drag and Drop";
+            this.lDrag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lDrag.Visible = false;
             // 
             // cmsNaziv
             // 
@@ -152,6 +167,7 @@
             // 
             // ucSetInstall
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
@@ -163,6 +179,8 @@
             this.Controls.Add(this.flpDriveri);
             this.Name = "ucSetInstall";
             this.Size = new System.Drawing.Size(577, 332);
+            this.flpDriveri.ResumeLayout(false);
+            this.flpDriveri.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -190,5 +208,6 @@
         private System.Windows.Forms.Button dBrowse;
         private System.Windows.Forms.Button dParHelp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lDrag;
     }
 }
