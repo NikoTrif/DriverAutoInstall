@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
 
 namespace DriverAutoInstall
 {
@@ -54,7 +56,7 @@ namespace DriverAutoInstall
 
         private void dParHelp_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
@@ -88,7 +90,42 @@ namespace DriverAutoInstall
 
         private void dInstall_Click(object sender, EventArgs e)
         {
+            //TODO
+            //Dodati prozor sa progress barom i labelima za broj instalacija i trenutnu instalaciju
+            //u foreach dodati string[] i upisati uspesne instalacije
+            //uc "catch" napraviti upisivanje u log fajl i string[] za upisivanje neuspelih pokretanja ili instalacija
+            //u finally messageBox sa izlistanim uspesnim i neuspesnim instalacijama isto upisati u log fajl.
+            
+            Process inst;
 
+
+            foreach (Control c in flpDriveri.Controls)
+            {
+                try
+                {
+                    inst = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = (c.Controls["tbPutanja"] as TextBox).Text,
+                            Arguments = (c.Controls["tbParametri"] as TextBox).Text
+                        }
+                    };
+
+                    inst.Start();
+                    inst.WaitForExit();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+                finally
+                {
+                    
+                }
+            }
         }
 
         private void dSaveXml_Click(object sender, EventArgs e)
@@ -103,7 +140,7 @@ namespace DriverAutoInstall
 
         private void dExit_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void DodajKontrole()
@@ -262,6 +299,11 @@ namespace DriverAutoInstall
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void Instalacija()
+        {
+            
         }
     }
 }

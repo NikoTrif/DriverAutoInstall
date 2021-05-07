@@ -22,8 +22,8 @@
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -37,10 +37,8 @@
             this.dAdd = new System.Windows.Forms.Button();
             this.dInstall = new System.Windows.Forms.Button();
             this.flpDriveri = new System.Windows.Forms.FlowLayoutPanel();
-            this.lDrag = new System.Windows.Forms.Label();
             this.cmsNaziv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.flpDriveri.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +64,7 @@
             // 
             // dExit
             // 
-            this.dExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dExit.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dExit.Location = new System.Drawing.Point(481, 288);
             this.dExit.Name = "dExit";
             this.dExit.Size = new System.Drawing.Size(75, 23);
@@ -77,7 +75,7 @@
             // 
             // dImpXml
             // 
-            this.dImpXml.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dImpXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dImpXml.Location = new System.Drawing.Point(246, 288);
             this.dImpXml.Name = "dImpXml";
             this.dImpXml.Size = new System.Drawing.Size(75, 23);
@@ -88,7 +86,7 @@
             // 
             // dSaveXml
             // 
-            this.dSaveXml.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSaveXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dSaveXml.Location = new System.Drawing.Point(165, 288);
             this.dSaveXml.Name = "dSaveXml";
             this.dSaveXml.Size = new System.Drawing.Size(75, 23);
@@ -99,7 +97,7 @@
             // 
             // dAdd
             // 
-            this.dAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dAdd.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dAdd.Location = new System.Drawing.Point(84, 288);
             this.dAdd.Name = "dAdd";
             this.dAdd.Size = new System.Drawing.Size(75, 23);
@@ -110,7 +108,7 @@
             // 
             // dInstall
             // 
-            this.dInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dInstall.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dInstall.Location = new System.Drawing.Point(3, 288);
             this.dInstall.Name = "dInstall";
             this.dInstall.Size = new System.Drawing.Size(75, 23);
@@ -122,27 +120,14 @@
             // flpDriveri
             // 
             this.flpDriveri.AllowDrop = true;
-            this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
             this.flpDriveri.AutoScroll = true;
-            this.flpDriveri.Controls.Add(this.lDrag);
             this.flpDriveri.Location = new System.Drawing.Point(3, 3);
             this.flpDriveri.Name = "flpDriveri";
             this.flpDriveri.Size = new System.Drawing.Size(518, 277);
             this.flpDriveri.TabIndex = 2;
             this.flpDriveri.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragDrop);
             this.flpDriveri.DragEnter += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragEnter);
-            // 
-            // lDrag
-            // 
-            this.lDrag.AutoSize = true;
-            this.lDrag.Location = new System.Drawing.Point(3, 0);
-            this.lDrag.Name = "lDrag";
-            this.lDrag.Size = new System.Drawing.Size(77, 13);
-            this.lDrag.TabIndex = 11;
-            this.lDrag.Text = "Drag and Drop";
-            this.lDrag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lDrag.Visible = false;
             // 
             // cmsNaziv
             // 
@@ -151,8 +136,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.dUp, 0, 0);
@@ -179,24 +163,23 @@
             this.Controls.Add(this.flpDriveri);
             this.Name = "ucSetInstall";
             this.Size = new System.Drawing.Size(577, 332);
-            this.flpDriveri.ResumeLayout(false);
-            this.flpDriveri.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
+
+        private System.Windows.Forms.ContextMenuStrip cmsNaziv;
+        private System.Windows.Forms.Button dAdd;
+        private System.Windows.Forms.Button dDown;
+        private System.Windows.Forms.Button dExit;
+        private System.Windows.Forms.Button dImpXml;
+        private System.Windows.Forms.Button dInstall;
+        private System.Windows.Forms.Button dSaveXml;
+        private System.Windows.Forms.Button dUp;
+        private System.Windows.Forms.FlowLayoutPanel flpDriveri;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 
         #endregion
 
-        private System.Windows.Forms.Button dDown;
-        private System.Windows.Forms.Button dUp;
-        private System.Windows.Forms.Button dExit;
-        private System.Windows.Forms.Button dImpXml;
-        private System.Windows.Forms.Button dSaveXml;
-        private System.Windows.Forms.Button dAdd;
-        private System.Windows.Forms.Button dInstall;
-        private System.Windows.Forms.FlowLayoutPanel flpDriveri;
-        private System.Windows.Forms.ContextMenuStrip cmsNaziv;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button dDelCtrl;
@@ -207,7 +190,5 @@
         private System.Windows.Forms.TextBox tbParametri;
         private System.Windows.Forms.Button dBrowse;
         private System.Windows.Forms.Button dParHelp;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label lDrag;
     }
 }
