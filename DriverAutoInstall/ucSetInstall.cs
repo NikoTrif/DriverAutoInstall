@@ -91,40 +91,75 @@ namespace DriverAutoInstall
         private void dInstall_Click(object sender, EventArgs e)
         {
             //TODO
-            //Dodati prozor sa progress barom i labelima za broj instalacija i trenutnu instalaciju
             //u foreach dodati string[] i upisati uspesne instalacije
             //uc "catch" napraviti upisivanje u log fajl i string[] za upisivanje neuspelih pokretanja ili instalacija
             //u finally messageBox sa izlistanim uspesnim i neuspesnim instalacijama isto upisati u log fajl.
-            
-            Process inst;
 
-
-            foreach (Control c in flpDriveri.Controls)
+            if (flpDriveri.Controls.Count != 0)
             {
-                try
+                Process inst;
+                int i = 1;
+                List<string> instalirano = new List<string>();
+                List<string> saGreskom = new List<string>();
+
+                fInst fin = new fInst();
+
+                //ProgressBar
+                fin.pbInstall.Maximum = flpDriveri.Controls.Count;
+                fin.pbInstall.Minimum = 1;
+                fin.pbInstall.Step = 1;
+
+                fin.Show();
+
+                foreach (Control c in flpDriveri.Controls)
                 {
-                    inst = new Process
+                    try
                     {
-                        StartInfo = new ProcessStartInfo
+                        inst = new Process
+
                         {
-                            FileName = (c.Controls["tbPutanja"] as TextBox).Text,
-                            Arguments = (c.Controls["tbParametri"] as TextBox).Text
-                        }
-                    };
+                            StartInfo = new ProcessStartInfo
+                            {
+                                FileName = (c.Controls["tbPutanja"] as TextBox).Text,
+                                Arguments = (c.Controls["tbParametri"] as TextBox).Text
+                            }
+                        };
 
-                    inst.Start();
-                    inst.WaitForExit();
+                        fin.lCurrentDrv.Text = (c.Controls["tbNaziv"] as TextBox).Text;
+                        fin.lNum.Text = string.Format("{0} / {1}", i.ToString(), flpDriveri.Controls.Count);
+
+                        inst.Start();
+                        inst.WaitForExit();
+
+                        fin.pbInstall.PerformStep();
+
+                        instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
+                        i++;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        saGreskom.Add((c.Controls["tbNaziv"] as TextBox).Text);
+                    }
                 }
 
-                catch (Exception ex)
+                fin.Dispose();
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine("Instalirano:");
+                foreach (string ins in instalirano)
                 {
-                    MessageBox.Show(ex.ToString());
+                    sb.AppendLine(ins);
                 }
 
-                finally
+                sb.AppendLine("\nGreske:");
+                foreach (string gr in saGreskom)
                 {
-                    
+                    sb.AppendLine(gr);
                 }
+
+                MessageBox.Show(sb.ToString());
             }
         }
 
