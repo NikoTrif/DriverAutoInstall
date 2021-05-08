@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 
 namespace DriverAutoInstall
 {
@@ -80,12 +75,12 @@ namespace DriverAutoInstall
 
         private void dUp_Click(object sender, EventArgs e)
         {
-
+            UpDown(true);
         }
 
         private void dDown_Click(object sender, EventArgs e)
         {
-
+            UpDown(false);
         }
 
         private void dInstall_Click(object sender, EventArgs e)
@@ -203,123 +198,131 @@ namespace DriverAutoInstall
             tbParametri = new TextBox();
 
             tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 355F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dDelCtrl, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbNaziv, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tbPutanja, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbParametri, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dBrowse, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dParHelp, 2, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(493, 92);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 69F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 355F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 33F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(dDelCtrl, 3, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Controls.Add(label3, 0, 2);
+            tableLayoutPanel1.Controls.Add(tbNaziv, 1, 0);
+            tableLayoutPanel1.Controls.Add(tbPutanja, 1, 1);
+            tableLayoutPanel1.Controls.Add(tbParametri, 1, 2);
+            tableLayoutPanel1.Controls.Add(dBrowse, 2, 1);
+            tableLayoutPanel1.Controls.Add(dParHelp, 2, 2);
+            tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33333F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33334F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33334F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(493, 92);
+            tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.Leave +=new EventHandler(tableLayoutPanel1_Leave);
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Naziv:";
+            label1.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(4, 9);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(63, 13);
+            label1.TabIndex = 0;
+            label1.Text = "Naziv:";
             // 
             // dDelCtrl
             // 
-            this.dDelCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dDelCtrl.Location = new System.Drawing.Point(463, 4);
-            this.dDelCtrl.Name = "dDelCtrl";
-            this.dDelCtrl.Size = new System.Drawing.Size(27, 23);
-            this.dDelCtrl.TabIndex = 2;
-            this.dDelCtrl.Text = "X";
-            this.dDelCtrl.UseVisualStyleBackColor = true;
-            this.dDelCtrl.Click += new System.EventHandler(this.dDelCtrl_Click);
+            dDelCtrl.Anchor = (((AnchorStyles.Top | AnchorStyles.Bottom)
+            | AnchorStyles.Left)
+            | AnchorStyles.Right);
+            dDelCtrl.Location = new System.Drawing.Point(463, 4);
+            dDelCtrl.Name = "dDelCtrl";
+            dDelCtrl.Size = new System.Drawing.Size(27, 23);
+            dDelCtrl.TabIndex = 2;
+            dDelCtrl.Text = "X";
+            dDelCtrl.UseVisualStyleBackColor = true;
+            dDelCtrl.Click += new EventHandler(dDelCtrl_Click);
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Putanja:";
+            label2.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(4, 39);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(63, 13);
+            label2.TabIndex = 0;
+            label2.Text = "Putanja:";
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Parametri:";
+            label3.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(4, 69);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(63, 13);
+            label3.TabIndex = 0;
+            label3.Text = "Parametri:";
             // 
             // tbNaziv
             // 
-            this.tbNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNaziv.Location = new System.Drawing.Point(74, 5);
-            this.tbNaziv.Name = "tbNaziv";
-            this.tbNaziv.Size = new System.Drawing.Size(349, 20);
-            this.tbNaziv.TabIndex = 1;
+            tbNaziv.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            tbNaziv.Location = new System.Drawing.Point(74, 5);
+            tbNaziv.Name = "tbNaziv";
+            tbNaziv.Size = new System.Drawing.Size(349, 20);
+            tbNaziv.TabIndex = 1;
             // 
             // tbPutanja
             // 
-            this.tbPutanja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPutanja.Location = new System.Drawing.Point(74, 35);
-            this.tbPutanja.Name = "tbPutanja";
-            this.tbPutanja.Size = new System.Drawing.Size(349, 20);
-            this.tbPutanja.TabIndex = 1;
+            tbPutanja.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            tbPutanja.Location = new System.Drawing.Point(74, 35);
+            tbPutanja.Name = "tbPutanja";
+            tbPutanja.Size = new System.Drawing.Size(349, 20);
+            tbPutanja.TabIndex = 1;
             // 
             // tbParametri
             // 
-            this.tbParametri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbParametri.Location = new System.Drawing.Point(74, 66);
-            this.tbParametri.Name = "tbParametri";
-            this.tbParametri.Size = new System.Drawing.Size(349, 20);
-            this.tbParametri.TabIndex = 1;
+            tbParametri.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            tbParametri.Location = new System.Drawing.Point(74, 66);
+            tbParametri.Name = "tbParametri";
+            tbParametri.Size = new System.Drawing.Size(349, 20);
+            tbParametri.TabIndex = 1;
             // 
             // dBrowse
             // 
-            this.dBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dBrowse.Location = new System.Drawing.Point(430, 34);
-            this.dBrowse.Name = "dBrowse";
-            this.dBrowse.Size = new System.Drawing.Size(26, 23);
-            this.dBrowse.TabIndex = 2;
-            this.dBrowse.Text = "...";
-            this.dBrowse.UseVisualStyleBackColor = true;
-            this.dBrowse.Click += new System.EventHandler(this.dBrowse_Click);
+            dBrowse.Anchor = (((AnchorStyles.Top | AnchorStyles.Bottom)
+            | AnchorStyles.Left)
+            | AnchorStyles.Right);
+            dBrowse.Location = new System.Drawing.Point(430, 34);
+            dBrowse.Name = "dBrowse";
+            dBrowse.Size = new System.Drawing.Size(26, 23);
+            dBrowse.TabIndex = 2;
+            dBrowse.Text = "...";
+            dBrowse.UseVisualStyleBackColor = true;
+            dBrowse.Click += new EventHandler(dBrowse_Click);
             // 
             // dParHelp
             // 
-            this.dParHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dParHelp.Location = new System.Drawing.Point(430, 64);
-            this.dParHelp.Name = "dParHelp";
-            this.dParHelp.Size = new System.Drawing.Size(26, 24);
-            this.dParHelp.TabIndex = 2;
-            this.dParHelp.Text = "?";
-            this.dParHelp.UseVisualStyleBackColor = true;
-            this.dParHelp.Click += new System.EventHandler(this.dParHelp_Click);
+            dParHelp.Anchor = (((AnchorStyles.Top | AnchorStyles.Bottom)
+            | AnchorStyles.Left)
+            | AnchorStyles.Right);
+            dParHelp.Location = new System.Drawing.Point(430, 64);
+            dParHelp.Name = "dParHelp";
+            dParHelp.Size = new System.Drawing.Size(26, 24);
+            dParHelp.TabIndex = 2;
+            dParHelp.Text = "?";
+            dParHelp.UseVisualStyleBackColor = true;
+            dParHelp.Click += new EventHandler(dParHelp_Click);
 
             flpDriveri.Controls.Add(tableLayoutPanel1);
+        }
+
+        int leavedIndex = 0;
+
+        private void tableLayoutPanel1_Leave(object sender, EventArgs e)
+        {
+            leavedIndex = flpDriveri.Controls.GetChildIndex((TableLayoutPanel)sender);
         }
 
         private void Upis(TableLayoutPanel tlp, string Putanja = "")
@@ -347,9 +350,23 @@ namespace DriverAutoInstall
             }
         }
 
-        private void Instalacija()
+        /// <summary>
+        /// Move TableLayoutPanel Up or Down
+        /// </summary>
+        /// <param name="UpOrDown">true = Up, false = Down</param>
+        private void UpDown(bool UpOrDown)
         {
-            
+            TableLayoutPanel tlp = (TableLayoutPanel)flpDriveri.Controls[leavedIndex];
+            if (UpOrDown)
+            {
+                flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex - 1);
+            }
+            else
+            {
+                flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex + 1);
+            }
+
+            tlp.Controls["tbNaziv"].Focus();
         }
     }
 }
