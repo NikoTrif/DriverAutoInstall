@@ -91,9 +91,7 @@ namespace DriverAutoInstall
         private void dInstall_Click(object sender, EventArgs e)
         {
             //TODO
-            //u foreach dodati string[] i upisati uspesne instalacije
-            //uc "catch" napraviti upisivanje u log fajl i string[] za upisivanje neuspelih pokretanja ili instalacija
-            //u finally messageBox sa izlistanim uspesnim i neuspesnim instalacijama isto upisati u log fajl.
+            //treba proveriti upisivanje u log fajl
 
             if (flpDriveri.Controls.Count != 0)
             {
@@ -140,6 +138,19 @@ namespace DriverAutoInstall
                     catch (Exception ex)
                     {
                         saGreskom.Add((c.Controls["tbNaziv"] as TextBox).Text);
+
+                        if (!File.Exists("log.txt"))
+                        {
+                            File.CreateText("log.txt");
+                        }
+
+                        //upisivanje u log fajl
+                        using(StreamWriter sw = new StreamWriter("log.txt"))
+                        {
+                            sw.WriteLine(DateTime.Now);
+                            sw.WriteLine(ex.ToString());
+                            sw.WriteLine("");
+                        }
                     }
                 }
 
