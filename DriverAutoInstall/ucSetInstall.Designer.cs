@@ -32,13 +32,12 @@
             this.dDown = new System.Windows.Forms.Button();
             this.dUp = new System.Windows.Forms.Button();
             this.dExit = new System.Windows.Forms.Button();
-            this.dImpXml = new System.Windows.Forms.Button();
-            this.dSaveXml = new System.Windows.Forms.Button();
             this.dAdd = new System.Windows.Forms.Button();
             this.dInstall = new System.Windows.Forms.Button();
             this.flpDriveri = new System.Windows.Forms.FlowLayoutPanel();
             this.cmsNaziv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.dRemove = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,28 +71,6 @@
             this.dExit.Text = "Exit";
             this.dExit.UseVisualStyleBackColor = true;
             this.dExit.Click += new System.EventHandler(this.dExit_Click);
-            // 
-            // dImpXml
-            // 
-            this.dImpXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dImpXml.Location = new System.Drawing.Point(246, 288);
-            this.dImpXml.Name = "dImpXml";
-            this.dImpXml.Size = new System.Drawing.Size(75, 23);
-            this.dImpXml.TabIndex = 6;
-            this.dImpXml.Text = "Import XML";
-            this.dImpXml.UseVisualStyleBackColor = true;
-            this.dImpXml.Click += new System.EventHandler(this.dImpXml_Click);
-            // 
-            // dSaveXml
-            // 
-            this.dSaveXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dSaveXml.Location = new System.Drawing.Point(165, 288);
-            this.dSaveXml.Name = "dSaveXml";
-            this.dSaveXml.Size = new System.Drawing.Size(75, 23);
-            this.dSaveXml.TabIndex = 7;
-            this.dSaveXml.Text = "Save XML";
-            this.dSaveXml.UseVisualStyleBackColor = true;
-            this.dSaveXml.Click += new System.EventHandler(this.dSaveXml_Click);
             // 
             // dAdd
             // 
@@ -149,6 +126,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(35, 64);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
+            // dRemove
+            // 
+            this.dRemove.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dRemove.Location = new System.Drawing.Point(165, 288);
+            this.dRemove.Name = "dRemove";
+            this.dRemove.Size = new System.Drawing.Size(75, 23);
+            this.dRemove.TabIndex = 8;
+            this.dRemove.Text = "Remove";
+            this.dRemove.UseVisualStyleBackColor = true;
+            this.dRemove.Click += new System.EventHandler(this.dRemove_Click);
+            // 
             // ucSetInstall
             // 
             this.AllowDrop = true;
@@ -156,8 +144,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.dExit);
-            this.Controls.Add(this.dImpXml);
-            this.Controls.Add(this.dSaveXml);
+            this.Controls.Add(this.dRemove);
             this.Controls.Add(this.dAdd);
             this.Controls.Add(this.dInstall);
             this.Controls.Add(this.flpDriveri);
@@ -171,9 +158,8 @@
         private System.Windows.Forms.Button dAdd;
         private System.Windows.Forms.Button dDown;
         private System.Windows.Forms.Button dExit;
-        private System.Windows.Forms.Button dImpXml;
         private System.Windows.Forms.Button dInstall;
-        private System.Windows.Forms.Button dSaveXml;
+        private System.Windows.Forms.Button dRemove;
         private System.Windows.Forms.Button dUp;
         private System.Windows.Forms.FlowLayoutPanel flpDriveri;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

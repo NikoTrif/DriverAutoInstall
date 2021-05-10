@@ -11,6 +11,7 @@ namespace DriverAutoInstall
     public partial class ucSetInstall : UserControl
     {
         int leavedIndex = 0;
+        bool delCtrlVisible = false;
         
         public ucSetInstall()
         {
@@ -20,6 +21,29 @@ namespace DriverAutoInstall
         private void dAdd_Click(object sender, EventArgs e)
         {
             DodajKontrole();
+        }
+
+        private void dRemove_Click(object sender, EventArgs e)
+        {
+            if (!delCtrlVisible)
+            {
+                foreach (TableLayoutPanel tlp in flpDriveri.Controls)
+                {
+                    (tlp.Controls["dDelCtrl"] as Button).Visible = true;
+                }
+
+                delCtrlVisible = true;
+            }
+
+            else
+            {
+                foreach (TableLayoutPanel tlp in flpDriveri.Controls)
+                {
+                    (tlp.Controls["dDelCtrl"] as Button).Visible = false;
+                }
+
+                delCtrlVisible = false;
+            }
         }
 
         private void dDelCtrl_Click(object sender, EventArgs e)
@@ -195,16 +219,6 @@ namespace DriverAutoInstall
             }
         }
 
-        private void dSaveXml_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dImpXml_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -246,7 +260,7 @@ namespace DriverAutoInstall
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33334F));
             tableLayoutPanel1.Size = new System.Drawing.Size(493, 92);
             tableLayoutPanel1.TabIndex = 0;
-            tableLayoutPanel1.Leave +=new EventHandler(tableLayoutPanel1_Leave);
+            tableLayoutPanel1.Leave += new EventHandler(tableLayoutPanel1_Leave);
             // 
             // label1
             // 
@@ -269,6 +283,7 @@ namespace DriverAutoInstall
             dDelCtrl.TabIndex = 2;
             dDelCtrl.Text = "X";
             dDelCtrl.UseVisualStyleBackColor = true;
+            dDelCtrl.Visible = false;
             dDelCtrl.Click += new EventHandler(dDelCtrl_Click);
             // 
             // label2
