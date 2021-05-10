@@ -4,11 +4,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace DriverAutoInstall
 {
     public partial class ucSetInstall : UserControl
     {
+        int leavedIndex = 0;
+        
         public ucSetInstall()
         {
             InitializeComponent();
@@ -85,6 +88,8 @@ namespace DriverAutoInstall
 
         private void dInstall_Click(object sender, EventArgs e)
         {
+            bool cancClicked = false;
+            
             //TODO
             //treba proveriti upisivanje u log fajl
 
@@ -122,10 +127,31 @@ namespace DriverAutoInstall
                         fin.lNum.Text = string.Format("{0} / {1}", i.ToString(), flpDriveri.Controls.Count);
 
                         inst.Start();
-                        inst.WaitForExit();
+                        
+                        //kada se u finst pritisne Cancel prekidaju se instalacije
+                        while (!inst.HasExited)
+                        {
+                            Thread.Sleep(100);
+                            Application.DoEvents();
+                            
+                            if (fin.DialogResult == DialogResult.Cancel)
+                            {
+                                inst.Kill();
+                                inst.Close();
+                                inst.Dispose();
+                                fin.Close();
+                                MessageBox.Show("Aborted by user", "Aborted", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                cancClicked = true;
+                                break;
+                            } 
+                        }
 
+                        if (cancClicked)
+                        {
+                            break;
+                        }
+                        
                         fin.pbInstall.PerformStep();
-
                         instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
                         i++;
                     }
@@ -317,8 +343,6 @@ namespace DriverAutoInstall
 
             flpDriveri.Controls.Add(tableLayoutPanel1);
         }
-
-        int leavedIndex = 0;
 
         private void tableLayoutPanel1_Leave(object sender, EventArgs e)
         {

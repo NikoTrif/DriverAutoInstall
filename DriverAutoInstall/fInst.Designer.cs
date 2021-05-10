@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbInstall = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.lCurrentDrv = new System.Windows.Forms.Label();
+            this.pbInstall = new System.Windows.Forms.ProgressBar();
             this.lNum = new System.Windows.Forms.Label();
             this.dCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -39,9 +39,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -60,17 +58,9 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(450, 134);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // pbInstall
-            // 
-            this.pbInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbInstall.Location = new System.Drawing.Point(3, 81);
-            this.pbInstall.Name = "pbInstall";
-            this.pbInstall.Size = new System.Drawing.Size(444, 20);
-            this.pbInstall.TabIndex = 0;
-            // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
@@ -81,7 +71,7 @@
             // 
             // lCurrentDrv
             // 
-            this.lCurrentDrv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lCurrentDrv.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lCurrentDrv.AutoSize = true;
             this.lCurrentDrv.Location = new System.Drawing.Point(3, 32);
             this.lCurrentDrv.Name = "lCurrentDrv";
@@ -90,9 +80,17 @@
             this.lCurrentDrv.Text = "label1";
             this.lCurrentDrv.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pbInstall
+            // 
+            this.pbInstall.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbInstall.Location = new System.Drawing.Point(3, 81);
+            this.pbInstall.Name = "pbInstall";
+            this.pbInstall.Size = new System.Drawing.Size(444, 20);
+            this.pbInstall.TabIndex = 0;
+            // 
             // lNum
             // 
-            this.lNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lNum.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lNum.AutoSize = true;
             this.lNum.Location = new System.Drawing.Point(3, 58);
             this.lNum.Name = "lNum";
@@ -103,7 +101,8 @@
             // 
             // dCancel
             // 
-            this.dCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dCancel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.dCancel.Location = new System.Drawing.Point(187, 107);
             this.dCancel.Name = "dCancel";
             this.dCancel.Size = new System.Drawing.Size(75, 24);
@@ -128,16 +127,15 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Button dCancel;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lCurrentDrv;
-        public System.Windows.Forms.ProgressBar pbInstall;
         public System.Windows.Forms.Label lNum;
-        public System.Windows.Forms.Button dCancel;
+        public System.Windows.Forms.ProgressBar pbInstall;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+
+        #endregion
     }
 }
