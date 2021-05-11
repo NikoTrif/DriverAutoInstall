@@ -80,7 +80,7 @@ namespace DriverAutoInstall
         {
             try
             {
-                Process.Start(/*AppDomain.CurrentDomain.BaseDirectory + */"hHelp.html");
+                Process.Start("hHelp.html");
             }
             catch(Exception ex)
             {

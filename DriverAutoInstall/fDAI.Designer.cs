@@ -46,11 +46,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 332);
             this.Controls.Add(this.pMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "fDAI";
             this.Text = "Driver AutoInstall";
             this.Load += new System.EventHandler(this.fDAI_Load);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Panel pMain;
