@@ -5,15 +5,139 @@
     <title>Help</title>
 </head>
 <body>
-    <h1>Help With using parameters</h1>
-    <p><a href="WindowsInstaller">Windows Installer</a></p>
-    <p><a href="InstallShield">InstallShield</a></p>
-    <p><a href="NSISInstaller">NSIS Installer</a></p>
-    <p><a href="InnoInstaller">Inno Installer</a></p>
     
-    <a id="WindowsInstaller"></a>
-    <a name="InstallShield">
-        <h1>InstallShield Installer</h1>
+<a id="top">
+    <h1>Help with using parameters</h1>
+</a>
+    <p><a href="#WindowsInstaller">Windows Installer</a></p>
+    <p><a href="#InstallShield">InstallShield</a></p>
+    <p><a href="#NSISInstaller">NSIS Installer</a></p>
+    <p><a href="#InnoInstaller">Inno Installer</a></p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+
+
+    <!--WindowsInstaller-->
+    <a id="WindowsInstaller">
+        <h2>Windows Installer</h2>
+        <body lang="en-us" dir="ltr">
+        <nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+            <h3>In this article</h3>
+        </nav>
+
+        <!-- <content> -->
+        <p>The executable program that interprets packages and installs products is Msiexec.exe.</p>
+        <div class="NOTE">
+            <p>Note</p>
+            <p>Msiexec also sets an error level on return that corresponds to <a href="../debug/system-error-codes" data-linktype="relative-path">System Error Codes</a>.</p>
+        </div>
+        <p> </p>
+        <p>The following table identifies the standard command-line options for this program. Command-line options are case insensitive.</p>
+        <p><strong>Windows Installer 2.0:</strong> The command-line options that are identified in this topic are available beginning with Windows Installer 3.0. The Windows Installer <a href="command-line-options" data-linktype="relative-path">Command-Line Options</a> are available with Windows Installer 3.0 and earlier versions.</p>
+        <table border="1px solid black">
+            <colgroup>
+                <col/>
+                <col/>
+                <col/>
+            </colgroup>
+            <thead>
+            <tr class="header">
+                <th>Option</th>
+                <th>Parameters</th>
+                <th>Meaning</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd">
+                <td><strong>/help</strong></td>
+                <td> </td>
+                <td>Help and quick reference option. Displays the correct usage of the setup command including a list of all switches and behavior. The description of usage can be displayed in the user interface. Incorrect use of any option invokes this help option.<br/> Example: <strong>msiexec /help</strong><br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer <a href="command-line-options" data-linktype="relative-path">Command-Line Option</a> is <strong>/?</strong>.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="even">
+                <td><strong>/quiet</strong></td>
+                <td> </td>
+                <td>Quiet display option. The installer runs an installation without displaying a user interface. No prompts, messages, or dialog boxes are displayed to the user. The user cannot cancel the installation. Use the <strong>/norestart</strong> or <strong>/forcerestart</strong> standard command-line options to control reboots. If no reboot options are specified, the installer restarts the computer whenever necessary without displaying any prompt or warning to the user.<br/> Examples: <br/> <strong>msiexec /package Application.msi /quiet</strong><br/> <strong>Msiexec /uninstall Application.msi /quiet</strong><br/> <strong>Msiexec /update msipatch.msp /quiet</strong><br/> <strong>Msiexec /uninstall msipatch.msp /package Application.msi / quiet</strong><br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer <a href="command-line-options" data-linktype="relative-path">Command-Line Option</a> is <strong>/qn</strong>.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="odd">
+                <td><strong>/passive</strong></td>
+                <td> </td>
+                <td>Passive display option. The installer displays a progress bar to the user that indicates that an installation is in progress but no prompts or error messages are displayed to the user. The user cannot cancel the installation. Use the <strong>/norestart</strong> or <strong>/forcerestart</strong> standard command-line options to control reboots. If no reboot option is specified, the installer restarts the computer whenever necessary without displaying any prompt or warning to the user. <br/> Example: <strong>msiexec /package Application.msi /passive</strong> <br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer <a href="command-line-options" data-linktype="relative-path">Command-Line Option</a> is <strong>/qb!-</strong> with <a href="rebootprompt" data-linktype="relative-path"><strong>REBOOTPROMPT</strong></a>=S set on the command line.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="even">
+                <td><strong>/norestart</strong></td>
+                <td> </td>
+                <td>Never restart option. The installer never restarts the computer after the installation.<br/> Example: msiexec /package Application.msi <strong>/norestart</strong><br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer command line has <a href="reboot" data-linktype="relative-path"><strong>REBOOT</strong></a>=ReallySuppress set on the command line.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="odd">
+                <td><strong>/forcerestart</strong></td>
+                <td> </td>
+                <td>Always restart option. The installer always restarts the computer after every installation.<br/> Example: msiexec /package Application.msi <strong>/forcerestart</strong><br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer command line has <a href="reboot" data-linktype="relative-path"><strong>REBOOT</strong></a>=Force set on the command line.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="even">
+                <td><strong>/promptrestart</strong></td>
+                <td> </td>
+                <td>Prompt before restarting option. Displays a message that a restart is required to complete the installation and asks the user whether to restart the system now. This option cannot be used together with the <strong>/quiet</strong> option.<br/>
+                    <blockquote>
+                        [!Note]<br/>
+                        The equivalent Windows Installer command line has <a href="rebootprompt" data-linktype="relative-path"><strong>REBOOTPROMPT</strong></a> = &quot;&quot; set on the command line.
+                    </blockquote>
+                    <br/></td>
+            </tr>
+            <tr class="odd">
+                <td><strong>/uninstall</strong></td>
+                <td><em>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+
+                    <!-- </content> -->
+
+                    </main>
+                </em>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <a href="#top">Go To Top</a>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+    
+    <!--InstallShield-->
+    <a id="InstallShield">
+        <h2>InstallShield Installer</h2>
         <table class="AutoNumber_p_b_Bulleted" style="width: 100%; margin-left: 0;" cellspacing="0" cellpadding="0">
         <col style="width: 0px;" />
         <col style="width: 24px;" />
@@ -787,8 +911,320 @@
             </tbody>
         </table>
     </a>
-    <a id="NSISInstaller"></a>
-    <a id="InnoInstaller"></a>
+
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <a href="#top">Go To Top</a>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        
+        <!--NSIS Installer-->
+    <a id="NSISInstaller">
+        <h2>NSIS (Nullsoft Scriptable Install System)</h2>
+        <body data-rsssl=1 itemtype='https://schema.org/WebPage' itemscope='itemscope' class="page-template-default page page-id-335 page-child parent-pageid-357 wp-custom-logo ast-plain-container ast-left-sidebar astra-1.3.3 ast-header-custom-item-inside ast-single-post ast-normal-title-enabled elementor-default elementor-kit-1664 elementor-page elementor-page-335">
+
+        <header class="entry-header ast-no-thumbnail ast-no-meta">
+
+            <div class="entry-content clear" itemprop="text">
+
+
+                <div data-elementor-type="wp-post" data-elementor-id="335" class="elementor elementor-335 elementor-bc-flex-widget" data-elementor-settings="[]">
+                    <div class="elementor-inner">
+                        <div class="elementor-section-wrap">
+                            <section class="elementor-section elementor-top-section elementor-element elementor-element-36da8df5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="36da8df5" data-element_type="section">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-row">
+                                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6acf306a" data-id="6acf306a" data-element_type="column">
+                                            <div class="elementor-column-wrap elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-ebbf0af elementor-widget elementor-widget-text-editor" data-id="ebbf0af" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-text-editor elementor-clearfix"><div class="bread"><span><span><a href="https://www.exemsi.com/">Home</a> » <span><a href="https://www.exemsi.com/documentation/">Documentation</a> » <span><a href="https://www.exemsi.com/documentation/installer-frameworks/">Installer Frameworks</a> » <span class="breadcrumb_last" aria-current="page">NSIS (Nullsoft Scriptable Install System)</span></span></span></span></span></div><p>Common command line parameters for installers built using the NSIS are:</p><ul><li>/S runs the installer or uninstaller silently.</li><li>/D sets the default installation directory. It must be the last parameter used in the command line and must not contain any quotes, even if the path contains spaces. Only absolute paths are supported.</li></ul><p>More information about NSIS is available in the <a href="http://nsis.sourceforge.net/Docs/Chapter3.html#3.2.1" target="_blank" rel="noopener">documentation</a> or the <a href="http://nsis.sourceforge.net/Main_Page" target="_blank" rel="noopener">NSIS Wiki</a>.</p></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .entry-content .clear -->
+            </article><!-- #post-## -->
+            </main><!-- #main -->
+            </div><!-- #primary -->
+            </div> <!-- ast-container -->
+            </div><!-- #content -->
+        </body>
+    </a>
+
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <a href="#top">Go To Top</a>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        
+        <!--Inno Installer-->
+    <a id="InnoInstaller">
+        <h2>Inno Installer</h2>
+        <h3 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Custom Setup commandline options</span></h3>
+        <p class="p_Normal">&nbsp;</p>
+        <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+            <tr>
+                <td style="vertical-align:top; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span style="font-weight: bold;">Option</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span style="font-weight: bold;">Description</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; width:33%; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText" style="font-weight: bold;">/nouninstall</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">This option exists since X# 2.4.</span><br />
+                    <span class="f_BodyText">This suppresses uninstalling the previous version.</span><br />
+                    <span class="f_BodyText">When you choose this you can install 2 different versions of X# side by side, assuming you choose different installation folders.</span><br />
+                    <span class="f_BodyText">Please note that if both versions install into the same Visual Studio version then the latest installation &quot;wins&quot;.</span><br />
+                    <span class="f_BodyText">If you want to switch to another version of the VS integration or MsBuild support files you should run the &quot;deployvs</span><span class="f_BodyText" style="font-weight: bold;">&lt;num&gt;</span><span class="f_BodyText">&quot;.cmd files in the Uninst folder of the installation that you want to activate.</span></p>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <h3 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Standard Inno Setup commandline options</span></h3>
+        <p class="p_Normal">&nbsp;</p>
+        <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+            <tr>
+                <td style="vertical-align:top; width:33%; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span style="font-weight: bold;">Option</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span style="font-weight: bold;">Description</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/help, /?</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Shows a summary of this information. Ignored if the UseSetupLdr [Setup] section directive was set to no.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/silent, /verysilent</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to be silent or very silent. When Setup is silent the wizard and the background window are not displayed but the installation progress window is. When a setup is very silent this installation progress window is not displayed. Everything else is normal so for example error messages during installation are displayed and the startup prompt is (if you haven't disabled it with DisableStartupPrompt or the '/SP-' command line option explained above).</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">If a restart is necessary and the '/norestart command isn't used (see below) and Setup is silent, it will display a Reboot now? message box. If it's very silent it will reboot without asking.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/suppressmsgboxes</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to suppress message boxes. Only has an effect when combined with '/silent or '/verysilent.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">The default response in situations where there's a choice is:</span></p>
+                    <p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">Yes in a 'Keep newer file?' situation. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">No in a 'File exists, confirm overwrite.' situation. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">Abort in Abort/Retry situations. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">Cancel in Retry/Cancel situations. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">Yes (=continue) in a DiskSpaceWarning/DirExists/DirDoesntExist/NoUninstallWarning/ExitSetupMessage/ConfirmUninstall situation. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">Yes (=restart) in a FinishedRestartMessage/UninstalledAndNeedsRestart situation. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 0.8125rem; margin-left: 0;"><span class="f_BodyText" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">&#8226;</span><span class="f_BodyText">The recommended choice in a PrivilegesRequiredOverridesAllowed=dialog situation.</span></p><p class="p_BodyText"><span class="f_BodyText">5 message boxes are not suppressible:</span></p>
+                    <p class="p_BodyText" style="text-indent: 0; padding-left: 1.6250rem; margin-left: 0;"><span class="f_BodyText" style="font-family: 'Courier New';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">o</span><span class="f_BodyText">The About Setup message box. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 1.6250rem; margin-left: 0;"><span class="f_BodyText" style="font-family: 'Courier New';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">o</span><span class="f_BodyText">The Exit Setup? message box. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 1.6250rem; margin-left: 0;"><span class="f_BodyText" style="font-family: 'Courier New';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">o</span><span class="f_BodyText">The FileNotInDir2 message box displayed when Setup requires a new disk to be inserted and the disk was not found. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 1.6250rem; margin-left: 0;"><span class="f_BodyText" style="font-family: 'Courier New';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">o</span><span class="f_BodyText">Any (error) message box displayed before Setup (or Uninstall) could read the command line parameters. </span></p><p class="p_BodyText" style="text-indent: 0; padding-left: 1.6250rem; margin-left: 0;"><span class="f_BodyText" style="font-family: 'Courier New';display:inline-block;width:0.8125rem;margin-left:-0.8125rem">o</span><span class="f_BodyText">Any task dialog or message box displayed by [Code] support functions TaskDialogMsgBox and MsgBox.</span></p></td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/log=&quot;filename&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">This allows you to specify a fixed path/filename to use for the log file. If a file with the specified name already exists it will be overwritten. If the file cannot be created, Setup will abort with an error message. If you do not specify this command line option then the installer will log to a file with the name &quot;Setup Log &lt;date&gt;#&lt;number&gt;.txt&quot; in the current users TEMP folder.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/nocancel</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Prevents the user from canceling during the installation process, by disabling the Cancel button and ignoring clicks on the close button. Useful along with '/silent or '/verysilent.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/norestart</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Prevents Setup from restarting the system following a successful installation, or after a Preparing to Install failure that requests a restart. Typically used along with /silent or /verysilent.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/restartexitcode=exit code</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Specifies a custom exit code that Setup is to return when the system needs to be restarted following a successful installation. (By default, 0 is returned in this case.) Typically used along with /norestart. </span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/closeapplications</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to close applications using files that need to be updated by Setup if possible.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/nocloseapplications</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Prevents Setup from closing applications using files that need to be updated by Setup. If /closeapplications was also used, this command line parameter is ignored.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/forcecloseapplications</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to force close when closing applications.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/noforcecloseapplications</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Prevents Setup from force closing when closing applications. If /forcecloseapplications was also used, this command line parameter is ignored.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/restartapplications</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to restart applications if possible. Only has an effect when combined with '/closeapplications.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/norestartapplications</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Prevents Setup from restarting applications. If /restartapplications was also used, this command line parameter is ignored.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/loadinf=&quot;filename&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to load the settings from the specified file after having checked the command line. This file can be prepared using the '/saveinf=' command as explained below.Don't forget to use quotes if the filename contains spaces.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/saveinf=&quot;filename&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to save installation settings to the specified file. Don't forget to use quotes if the filename contains spaces.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/dir=&quot;x:\dirname&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Overrides the default directory name displayed on the Select Destination Location wizard page. A fully qualified pathname must be specified. May include an &quot;expand:&quot; prefix which instructs Setup to expand any constants in the name. For example: '/dir=expand:{autopf}\My Program'.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/group=&quot;folder name&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Overrides the default folder name displayed on the Select Start Menu Folder wizard page. May include an &quot;expand:&quot; prefix, see '/dir='. If the [Setup] section directive DisableProgramGroupPage was set to yes, this command line parameter is ignored.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/noicons</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Instructs Setup to initially check the Don't create a Start Menu folder check box on the Select Start Menu Folder wizard page.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/type=type name</span></p>
+                </td>
+                <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Overrides the default setup type.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">&nbsp;</span><br />
+                        <span class="f_BodyText">If the specified type exists and isn't a custom type, then any /components parameter will be ignored.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">&nbsp;</span><br />
+                        <span class="f_BodyText" style="font-style: italic; font-weight: bold;">The types in the X# installer are: full, compact, custom</span><br />
+                        <span class="f_BodyText" style="font-style: italic; font-weight: bold;">&nbsp;</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">/components=</span><br />
+                    <span class="f_BodyText">&quot;comma separated list of component names&quot;</span></p>
+                </td>
+                <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_BodyText"><span class="f_BodyText">Overrides the default component settings. Using this command line parameter causes Setup to automatically select a custom type. If no custom type is defined, this parameter is ignored.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">Only the specified components will be selected; the rest will be deselected.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">If a component name is prefixed with a &quot;*&quot; character, any child components will be selected as well (except for those that include the dontinheritcheck flag). If a component name is prefixed with a &quot;!&quot; character, the component will be deselected.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">This parameter does not change the state of components that include the fixed flag.</span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">Example:Deselect all components, then select the &quot;help&quot; and &quot;plugins&quot; components:</span><br />
+                        <span class="f_BodyText">/components=&quot;help,plugins&quot; </span></p>
+                    <p class="p_BodyText"><span class="f_BodyText">Example:Deselect all components, then select a parent component and all of its children with the exception of one:</span><br />
+                        <span class="f_BodyText">/components=&quot;*parent,!parent\child&quot; </span><br />
+                        <span class="f_BodyText">&nbsp;</span><br />
+                        <span class="f_BodyText" style="font-style: italic; font-weight: bold;">The components in the X# installer are:</span></p>
+                    <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+                        <tr>
+                            <td style="vertical-align:top; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Component</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#C0C0C0; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Description</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">main</span></p>
+                            </td>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">The XSharp Compiler and Build System</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">main\script</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Register .prgx as X# Script extension</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">main\ngen</span></p>
+                            </td>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Optimize performance by generating native images</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">main\gac</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Register runtime DLLs in the GAC (recommended !)</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">main\examples</span></p>
+                            </td>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Install the Xsharp Examples</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">vs</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Visual Studio Integration</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">vs\2015</span></p>
+                            </td>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Visual Studio 2015</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">vs\2017</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Visual Studio 2017</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">vs\2019</span></p>
+                            </td>
+                            <td style="vertical-align:top; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Visual Studio 2019</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">xide</span></p>
+                            </td>
+                            <td style="vertical-align:top; background-color:#CCFFFF; padding:0.3125rem; border:none"><p class="p_Normal"><span class="f_BodyText" style="font-style: italic; font-weight: bold;">Include the XIDE installer</span></p>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </div>
+
+    </a>
+
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <a href="#top">Go To Top</a>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <p>&nbsp</p>
 
 </body>
 </html>

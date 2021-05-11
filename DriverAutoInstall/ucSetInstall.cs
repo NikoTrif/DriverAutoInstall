@@ -78,7 +78,14 @@ namespace DriverAutoInstall
 
         private void dParHelp_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                Process.Start(/*AppDomain.CurrentDomain.BaseDirectory + */"hHelp.html");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
