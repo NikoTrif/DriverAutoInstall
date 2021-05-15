@@ -109,12 +109,18 @@ namespace DriverAutoInstall
 
         private void dUp_Click(object sender, EventArgs e)
         {
-                UpDown(true);
+            if (flpDriveri.Controls.Count != 0)
+            {
+                UpDown(true); 
+            }
         }
 
         private void dDown_Click(object sender, EventArgs e)
         {
-            UpDown(false);
+            if (flpDriveri.Controls.Count != 0)
+            {
+                UpDown(false); 
+            }
         }
 
         private void dInstall_Click(object sender, EventArgs e)
