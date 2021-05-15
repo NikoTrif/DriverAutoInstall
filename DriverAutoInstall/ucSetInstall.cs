@@ -109,7 +109,7 @@ namespace DriverAutoInstall
 
         private void dUp_Click(object sender, EventArgs e)
         {
-            UpDown(true);
+                UpDown(true);
         }
 
         private void dDown_Click(object sender, EventArgs e)
@@ -120,9 +120,6 @@ namespace DriverAutoInstall
         private void dInstall_Click(object sender, EventArgs e)
         {
             bool cancClicked = false;
-            
-            //TODO
-            //treba proveriti upisivanje u log fajl
 
             if (flpDriveri.Controls.Count != 0)
             {
@@ -191,18 +188,7 @@ namespace DriverAutoInstall
                     {
                         saGreskom.Add((c.Controls["tbNaziv"] as TextBox).Text);
 
-                        if (!File.Exists("log.txt"))
-                        {
-                            File.CreateText("log.txt");
-                        }
-
-                        //upisivanje u log fajl
-                        using(StreamWriter sw = new StreamWriter("log.txt"))
-                        {
-                            sw.WriteLine(DateTime.Now);
-                            sw.WriteLine(ex.ToString());
-                            sw.WriteLine("");
-                        }
+                        WriteLog(ex, "Install_Click");
                     }
                 }
 
@@ -396,23 +382,43 @@ namespace DriverAutoInstall
             }
         }
 
+        private static void WriteLog(Exception ex, string place)
+        {
+            //upisivanje u log fajl
+            using (StreamWriter sw = File.AppendText("Log.txt"))
+            {
+                sw.WriteLine(DateTime.Now);
+                sw.WriteLine(place);
+                sw.WriteLine(ex.ToString());
+                sw.WriteLine(sw.NewLine);
+            }
+        }
+
         /// <summary>
         /// Move TableLayoutPanel Up or Down
         /// </summary>
         /// <param name="UpOrDown">true = Up, false = Down</param>
         private void UpDown(bool UpOrDown)
         {
-            TableLayoutPanel tlp = (TableLayoutPanel)flpDriveri.Controls[leavedIndex];
-            if (UpOrDown)
+            try
             {
-                flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex - 1);
-            }
-            else
-            {
-                flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex + 1);
-            }
+                TableLayoutPanel tlp = (TableLayoutPanel)flpDriveri.Controls[leavedIndex];
 
-            tlp.Controls["tbNaziv"].Focus();
+                if (UpOrDown)
+                {
+                    flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex - 1);
+                }
+                else
+                {
+                    flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex + 1);
+                }
+
+                tlp.Controls["tbNaziv"].Focus();
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "UpDown");
+            }
         }
     }
 }

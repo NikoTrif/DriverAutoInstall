@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Driver Nuclear Alt.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ucSetInstall.resx">
       <DependentUpon>ucSetInstall.cs</DependentUpon>
@@ -92,7 +96,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Driver Nuclear Alt.ico" />
     <Content Include="hHelp.html" />
+    <None Include="Resources\UpArrow.png" />
+    <None Include="Resources\DownArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

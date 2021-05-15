@@ -15,11 +15,5 @@ namespace DriverAutoInstall
         {
             InitializeComponent();
         }
-
-        private void dCancel_Click(object sender, EventArgs e)
-        {
-            //ToDo
-            //Prekinuti proces instalacije kada se pritisne dugme
-        }
     }
 }
