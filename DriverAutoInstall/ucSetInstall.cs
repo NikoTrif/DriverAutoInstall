@@ -79,14 +79,27 @@ namespace DriverAutoInstall
 
         private void dParHelp_Click(object sender, EventArgs e)
         {
-            try
+            /*todo probati izmeniti help da se dobiju postojeci parametri, ako postoji mogucnost proveriti koji je
+                   tip fajla u pitanju pa ih postaviti automatski*/
+            /*try
             {
                 Process.Start("hHelp.html");
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
+            }*/
+
+            //ovo radi kod nekih fajlova ne kod svih
+            Process proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = @"C:\Users\Laza\Downloads\Chipset_Intel_Win7_64_VER9441006\Setup.exe",
+                    Arguments = "/?"
+                }
+            };
+            proc.Start();
         }
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
