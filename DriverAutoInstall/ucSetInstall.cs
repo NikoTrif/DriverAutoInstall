@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Xml;
 
 namespace DriverAutoInstall
 {
@@ -215,6 +216,13 @@ namespace DriverAutoInstall
                 }
 
                 MessageBox.Show(sb.ToString());
+
+                if (MessageBox.Show("Da li želite da restartujete računar", "Restart", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Process.Start("shutdown.exe", "-r -t 10");
+                    Application.Exit();
+                }
             }
         }
 

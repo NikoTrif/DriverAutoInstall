@@ -48,13 +48,12 @@
             this.ClientSize = new System.Drawing.Size(577, 332);
             this.Controls.Add(this.pMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "fDAI";
             this.Text = "Driver AutoInstall";
             this.Load += new System.EventHandler(this.fDAI_Load);
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.Panel pMain;
