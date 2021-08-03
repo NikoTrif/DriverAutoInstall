@@ -91,15 +91,19 @@ namespace DriverAutoInstall
             }*/
 
             //ovo radi kod nekih fajlova ne kod svih
+            string fName = (sender as Button).Parent.Controls["tbPutanja"].Text;
             Process proc = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = @"C:\Users\Laza\Downloads\Chipset_Intel_Win7_64_VER9441006\Setup.exe",
+                    //FileName = @"C:\Users\Laza\Downloads\Chipset_Intel_Win7_64_VER9441006\Setup.exe",
+                    FileName = fName,
                     Arguments = "/?"
                 }
             };
             proc.Start();
+
+            Process.Start($"cmd.exe /k {0} /?", fName);
         }
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
