@@ -81,14 +81,6 @@ namespace DriverAutoInstall
         {
             /*todo probati izmeniti help da se dobiju postojeci parametri, ako postoji mogucnost proveriti koji je
                    tip fajla u pitanju pa ih postaviti automatski*/
-            /*try
-            {
-                Process.Start("hHelp.html");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }*/
 
             //ovo radi kod nekih fajlova ne kod svih
             string fName = (sender as Button).Parent.Controls["tbPutanja"].Text;
@@ -96,14 +88,25 @@ namespace DriverAutoInstall
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    //FileName = @"C:\Users\Laza\Downloads\Chipset_Intel_Win7_64_VER9441006\Setup.exe",
                     FileName = fName,
                     Arguments = "/?"
                 }
             };
             proc.Start();
+        }
 
-            Process.Start($"cmd.exe /k {0} /?", fName);
+        private void dHHelp_Click(object sender, EventArgs e)
+        {
+            /*todo probati izmeniti help da se dobiju postojeci parametri, ako postoji mogucnost proveriti koji je
+                   tip fajla u pitanju pa ih postaviti automatski*/
+            try
+            {
+                Process.Start("hHelp.html");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void flpDriveri_DragDrop(object sender, DragEventArgs e)
@@ -254,9 +257,11 @@ namespace DriverAutoInstall
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            label4 = new Label();
             dDelCtrl = new Button();
             dBrowse = new Button();
             dParHelp = new Button();
+            dHHelp = new Button();
             tbNaziv = new TextBox();
             tbPutanja = new TextBox();
             tbParametri = new TextBox();
@@ -268,6 +273,7 @@ namespace DriverAutoInstall
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 32F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 33F));
             tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label4, 2, 0);
             tableLayoutPanel1.Controls.Add(dDelCtrl, 3, 0);
             tableLayoutPanel1.Controls.Add(label2, 0, 1);
             tableLayoutPanel1.Controls.Add(label3, 0, 2);
@@ -276,6 +282,7 @@ namespace DriverAutoInstall
             tableLayoutPanel1.Controls.Add(tbParametri, 1, 2);
             tableLayoutPanel1.Controls.Add(dBrowse, 2, 1);
             tableLayoutPanel1.Controls.Add(dParHelp, 2, 2);
+            tableLayoutPanel1.Controls.Add(dHHelp, 3, 2);
             tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
@@ -285,6 +292,7 @@ namespace DriverAutoInstall
             tableLayoutPanel1.Size = new System.Drawing.Size(493, 92);
             tableLayoutPanel1.TabIndex = 0;
             tableLayoutPanel1.Leave += new EventHandler(tableLayoutPanel1_Leave);
+            tableLayoutPanel1.Enter += new EventHandler(tableLayoutPanel1_Enter);
             // 
             // label1
             // 
@@ -295,6 +303,18 @@ namespace DriverAutoInstall
             label1.Size = new System.Drawing.Size(63, 13);
             label1.TabIndex = 0;
             label1.Text = "Naziv:";
+            // 
+            // label4
+            // 
+            label4.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(4, 9);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(63, 13);
+            label4.TabIndex = 0;
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8, System.Drawing.FontStyle.Bold);
+            label4.Text = "";
             // 
             // dDelCtrl
             // 
@@ -379,13 +399,33 @@ namespace DriverAutoInstall
             dParHelp.Text = "?";
             dParHelp.UseVisualStyleBackColor = true;
             dParHelp.Click += new EventHandler(dParHelp_Click);
+            // 
+            // dHHelp
+            // 
+            dHHelp.Anchor = (((AnchorStyles.Top | AnchorStyles.Bottom)
+            | AnchorStyles.Left)
+            | AnchorStyles.Right);
+            dHHelp.Location = new System.Drawing.Point(430, 64);
+            dHHelp.Name = "dHHelp";
+            dHHelp.Size = new System.Drawing.Size(26, 24);
+            dHHelp.TabIndex = 2;
+            dHHelp.Text = "H";
+            dHHelp.UseVisualStyleBackColor = true;
+            dHHelp.Click += new EventHandler(dHHelp_Click);
 
             flpDriveri.Controls.Add(tableLayoutPanel1);
+            label4.Text = (flpDriveri.Controls.IndexOf(tableLayoutPanel1) + 1).ToString();
+        }
+
+        private void tableLayoutPanel1_Enter(object sender, EventArgs e)
+        {
+            (sender as TableLayoutPanel).BackColor = System.Drawing.SystemColors.ControlDarkDark;
         }
 
         private void tableLayoutPanel1_Leave(object sender, EventArgs e)
         {
             leavedIndex = flpDriveri.Controls.GetChildIndex((TableLayoutPanel)sender);
+            (sender as TableLayoutPanel).BackColor = System.Drawing.SystemColors.Control;
         }
 
         private void Upis(TableLayoutPanel tlp, string Putanja = "")
@@ -442,6 +482,11 @@ namespace DriverAutoInstall
                 else
                 {
                     flpDriveri.Controls.SetChildIndex(flpDriveri.Controls[leavedIndex], leavedIndex + 1);
+                }
+
+                foreach(TableLayoutPanel t in flpDriveri.Controls)
+                {
+                    t.Controls["label4"].Text = (flpDriveri.Controls.IndexOf(t) + 1).ToString();
                 }
 
                 tlp.Controls["tbNaziv"].Focus();
