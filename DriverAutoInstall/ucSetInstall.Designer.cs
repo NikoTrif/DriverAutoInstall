@@ -44,9 +44,10 @@
             // dDown
             // 
             this.dDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dDown.Location = new System.Drawing.Point(3, 35);
+            this.dDown.Location = new System.Drawing.Point(4, 43);
+            this.dDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dDown.Name = "dDown";
-            this.dDown.Size = new System.Drawing.Size(29, 26);
+            this.dDown.Size = new System.Drawing.Size(39, 32);
             this.dDown.TabIndex = 3;
             this.dDown.UseVisualStyleBackColor = true;
             this.dDown.Click += new System.EventHandler(this.dDown_Click);
@@ -54,19 +55,21 @@
             // dUp
             // 
             this.dUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dUp.Location = new System.Drawing.Point(3, 3);
+            this.dUp.Location = new System.Drawing.Point(4, 4);
+            this.dUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dUp.Name = "dUp";
-            this.dUp.Size = new System.Drawing.Size(29, 26);
+            this.dUp.Size = new System.Drawing.Size(39, 31);
             this.dUp.TabIndex = 4;
             this.dUp.UseVisualStyleBackColor = true;
             this.dUp.Click += new System.EventHandler(this.dUp_Click);
             // 
             // dExit
             // 
-            this.dExit.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dExit.Location = new System.Drawing.Point(481, 288);
+            this.dExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dExit.Location = new System.Drawing.Point(641, 354);
+            this.dExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dExit.Name = "dExit";
-            this.dExit.Size = new System.Drawing.Size(75, 23);
+            this.dExit.Size = new System.Drawing.Size(100, 28);
             this.dExit.TabIndex = 5;
             this.dExit.Text = "Exit";
             this.dExit.UseVisualStyleBackColor = true;
@@ -74,10 +77,11 @@
             // 
             // dAdd
             // 
-            this.dAdd.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dAdd.Location = new System.Drawing.Point(84, 288);
+            this.dAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dAdd.Location = new System.Drawing.Point(112, 354);
+            this.dAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dAdd.Name = "dAdd";
-            this.dAdd.Size = new System.Drawing.Size(75, 23);
+            this.dAdd.Size = new System.Drawing.Size(100, 28);
             this.dAdd.TabIndex = 8;
             this.dAdd.Text = "Add";
             this.dAdd.UseVisualStyleBackColor = true;
@@ -85,10 +89,11 @@
             // 
             // dInstall
             // 
-            this.dInstall.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dInstall.Location = new System.Drawing.Point(3, 288);
+            this.dInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dInstall.Location = new System.Drawing.Point(4, 354);
+            this.dInstall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dInstall.Name = "dInstall";
-            this.dInstall.Size = new System.Drawing.Size(75, 23);
+            this.dInstall.Size = new System.Drawing.Size(100, 28);
             this.dInstall.TabIndex = 9;
             this.dInstall.Text = "Install";
             this.dInstall.UseVisualStyleBackColor = true;
@@ -97,41 +102,47 @@
             // flpDriveri
             // 
             this.flpDriveri.AllowDrop = true;
-            this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
+            this.flpDriveri.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flpDriveri.AutoScroll = true;
-            this.flpDriveri.Location = new System.Drawing.Point(3, 3);
+            this.flpDriveri.Location = new System.Drawing.Point(4, 4);
+            this.flpDriveri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flpDriveri.Name = "flpDriveri";
-            this.flpDriveri.Size = new System.Drawing.Size(518, 277);
+            this.flpDriveri.Size = new System.Drawing.Size(691, 341);
             this.flpDriveri.TabIndex = 2;
             this.flpDriveri.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragDrop);
             this.flpDriveri.DragEnter += new System.Windows.Forms.DragEventHandler(this.flpDriveri_DragEnter);
             // 
             // cmsNaziv
             // 
+            this.cmsNaziv.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsNaziv.Name = "cmsNaziv";
             this.cmsNaziv.Size = new System.Drawing.Size(61, 4);
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.dUp, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dDown, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(527, 93);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(703, 114);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(35, 64);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(47, 79);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // dRemove
             // 
-            this.dRemove.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dRemove.Location = new System.Drawing.Point(165, 288);
+            this.dRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dRemove.Location = new System.Drawing.Point(220, 354);
+            this.dRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dRemove.Name = "dRemove";
-            this.dRemove.Size = new System.Drawing.Size(75, 23);
+            this.dRemove.Size = new System.Drawing.Size(100, 28);
             this.dRemove.TabIndex = 8;
             this.dRemove.Text = "Remove";
             this.dRemove.UseVisualStyleBackColor = true;
@@ -140,7 +151,7 @@
             // ucSetInstall
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.dExit);
@@ -148,10 +159,13 @@
             this.Controls.Add(this.dAdd);
             this.Controls.Add(this.dInstall);
             this.Controls.Add(this.flpDriveri);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucSetInstall";
-            this.Size = new System.Drawing.Size(577, 332);
+            this.Size = new System.Drawing.Size(769, 409);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ucSetInstall_KeyDown);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.ContextMenuStrip cmsNaziv;

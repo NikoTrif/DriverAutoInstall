@@ -246,6 +246,11 @@ namespace DriverAutoInstall
             }
         }
 
+        private void ucSetInstall_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
         private void dExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
