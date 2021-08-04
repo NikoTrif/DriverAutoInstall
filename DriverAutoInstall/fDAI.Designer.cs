@@ -36,7 +36,7 @@
             // 
             this.pMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pMain.Location = new System.Drawing.Point(0, 0);
-            this.pMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pMain.Margin = new System.Windows.Forms.Padding(4);
             this.pMain.Name = "pMain";
             this.pMain.Size = new System.Drawing.Size(769, 409);
             this.pMain.TabIndex = 0;
@@ -50,12 +50,11 @@
             this.Controls.Add(this.pMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "fDAI";
             this.Text = "Driver AutoInstall";
             this.Load += new System.EventHandler(this.fDAI_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fDAI_KeyDown);
             this.ResumeLayout(false);
 
         }

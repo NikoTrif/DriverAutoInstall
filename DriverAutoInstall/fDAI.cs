@@ -23,30 +23,5 @@ namespace DriverAutoInstall
             pMain.Controls.Add(ucSet);
             ucSet.Dock = DockStyle.Fill;
         }
-
-        private void fDAI_KeyDown(object sender, KeyEventArgs e)
-        {
-            XmlDocument xdoc = new XmlDocument();
-
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                ucSet.IzveziXML(xdoc);
-            }
-
-            else if (e.Control && e.KeyCode == Keys.O)
-            {
-                using (OpenFileDialog ofd = new OpenFileDialog
-                {
-                    Filter = "XML | *.xml"
-                })
-                {
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        xdoc.Load(ofd.FileName);
-                        ucSet.UveziXML(xdoc); 
-                    }
-                }
-            }
-        }
     }
 }

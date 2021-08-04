@@ -259,9 +259,56 @@ namespace DriverAutoInstall
                 }
             }
         }
+
         private void dExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void uveziXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UveziXML();
+        }
+
+        private void izveziXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IzveziXML();
+        }
+
+        private void zatvoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dExit.PerformClick();
+        }
+
+        private void promeniOvdeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                (ActiveControl as TextBox).SelectedText = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "promeniOvdeToolStripMenu_Click");
+            }
+        }
+
+        private void promeniSvudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ne radi
+            try
+            {
+                string oldUserPath = (ActiveControl as TextBox).SelectedText;
+                string newUserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+                foreach (TableLayoutPanel tlp in flpDriveri.Controls)
+                {
+                    tlp.Controls["tbPutanja"].Text.Replace(oldUserPath, newUserPath);
+                }
+            }
+            catch(Exception ex)
+            {
+                WriteLog(ex, "promeniSvudaToolStripMenuItem_Click");
+            }
         }
 
         /// <summary>
@@ -381,6 +428,7 @@ namespace DriverAutoInstall
             tbPutanja.Name = "tbPutanja";
             tbPutanja.Size = new System.Drawing.Size(349, 20);
             tbPutanja.TabIndex = 1;
+            tbPutanja.ContextMenuStrip = cmsPutanja;
             // 
             // tbParametri
             // 
@@ -515,8 +563,9 @@ namespace DriverAutoInstall
             }
         }
 
-        public void IzveziXML(XmlDocument xdoc)
+        public void IzveziXML()
         {
+            XmlDocument xdoc = new XmlDocument();
             try
             {
                 xdoc.LoadXml("<driverAutoInstall></driverAutoInstall>");
@@ -557,24 +606,35 @@ namespace DriverAutoInstall
             }
         }
 
-        public void UveziXML(XmlDocument xdc)
+        public void UveziXML()
         {
+            XmlDocument xdc = new XmlDocument();
             int i = -1;
             try
             {
-                foreach (XmlNode xn in xdc.ChildNodes[0].ChildNodes)
+                using (OpenFileDialog ofd = new OpenFileDialog
                 {
-                    DodajKontrole();
-                    int.TryParse(xn.Name.Replace("drv", ""), out i);
-
-                    if (i > -1)
+                    Filter = "XML | *.xml"
+                })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        foreach (XmlNode x in xn.ChildNodes)
+                        xdc.Load(ofd.FileName);
+                        foreach (XmlNode xn in xdc.ChildNodes[0].ChildNodes)
                         {
-                            flpDriveri.Controls[i].Controls[x.Name].Text = x.InnerText;
-                        }
+                            DodajKontrole();
+                            int.TryParse(xn.Name.Replace("drv", ""), out i);
+
+                            if (i > -1)
+                            {
+                                foreach (XmlNode x in xn.ChildNodes)
+                                {
+                                    flpDriveri.Controls[i].Controls[x.Name].Text = x.InnerText;
+                                }
+                            }
+                            i = -1;
+                        } 
                     }
-                    i = -1;
                 }
             }
             catch (Exception ex)
