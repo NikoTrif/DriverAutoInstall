@@ -45,7 +45,7 @@
             // 
             this.dDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dDown.Location = new System.Drawing.Point(4, 43);
-            this.dDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dDown.Margin = new System.Windows.Forms.Padding(4);
             this.dDown.Name = "dDown";
             this.dDown.Size = new System.Drawing.Size(39, 32);
             this.dDown.TabIndex = 3;
@@ -56,7 +56,7 @@
             // 
             this.dUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dUp.Location = new System.Drawing.Point(4, 4);
-            this.dUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dUp.Margin = new System.Windows.Forms.Padding(4);
             this.dUp.Name = "dUp";
             this.dUp.Size = new System.Drawing.Size(39, 31);
             this.dUp.TabIndex = 4;
@@ -67,7 +67,7 @@
             // 
             this.dExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dExit.Location = new System.Drawing.Point(641, 354);
-            this.dExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dExit.Margin = new System.Windows.Forms.Padding(4);
             this.dExit.Name = "dExit";
             this.dExit.Size = new System.Drawing.Size(100, 28);
             this.dExit.TabIndex = 5;
@@ -79,7 +79,7 @@
             // 
             this.dAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dAdd.Location = new System.Drawing.Point(112, 354);
-            this.dAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dAdd.Margin = new System.Windows.Forms.Padding(4);
             this.dAdd.Name = "dAdd";
             this.dAdd.Size = new System.Drawing.Size(100, 28);
             this.dAdd.TabIndex = 8;
@@ -91,7 +91,7 @@
             // 
             this.dInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dInstall.Location = new System.Drawing.Point(4, 354);
-            this.dInstall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dInstall.Margin = new System.Windows.Forms.Padding(4);
             this.dInstall.Name = "dInstall";
             this.dInstall.Size = new System.Drawing.Size(100, 28);
             this.dInstall.TabIndex = 9;
@@ -107,7 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpDriveri.AutoScroll = true;
             this.flpDriveri.Location = new System.Drawing.Point(4, 4);
-            this.flpDriveri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpDriveri.Margin = new System.Windows.Forms.Padding(4);
             this.flpDriveri.Name = "flpDriveri";
             this.flpDriveri.Size = new System.Drawing.Size(691, 341);
             this.flpDriveri.TabIndex = 2;
@@ -128,7 +128,7 @@
             this.tableLayoutPanel2.Controls.Add(this.dUp, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dDown, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(703, 114);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
@@ -140,7 +140,7 @@
             // 
             this.dRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dRemove.Location = new System.Drawing.Point(220, 354);
-            this.dRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dRemove.Margin = new System.Windows.Forms.Padding(4);
             this.dRemove.Name = "dRemove";
             this.dRemove.Size = new System.Drawing.Size(100, 28);
             this.dRemove.TabIndex = 8;
@@ -159,10 +159,9 @@
             this.Controls.Add(this.dAdd);
             this.Controls.Add(this.dInstall);
             this.Controls.Add(this.flpDriveri);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSetInstall";
             this.Size = new System.Drawing.Size(769, 409);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ucSetInstall_KeyDown);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 

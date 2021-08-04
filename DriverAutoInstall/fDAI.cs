@@ -26,35 +26,26 @@ namespace DriverAutoInstall
 
         private void fDAI_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.Control && e.KeyCode == Keys.S)
-                {
-                    XmlDocument xdoc = new XmlDocument();
-                    xdoc.LoadXml("<driverAutoInstall></driverAutoInstall>");
+            XmlDocument xdoc = new XmlDocument();
 
-                    XmlElement xel;
-                    XmlNode xn;
-                    int i = 0;
-                    foreach (TableLayoutPanel t in pMain.Controls[0].Controls["flpDriveri"].Controls)
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                ucSet.IzveziXML(xdoc);
+            }
+
+            else if (e.Control && e.KeyCode == Keys.O)
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog
+                {
+                    Filter = "XML | *.xml"
+                })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        xel = xdoc.CreateElement(pMain.Controls[0].Controls["flpDriveri"].Controls.IndexOf(t).ToString());
-                        //xdoc.ChildNodes[0].AppendChild(xel);
-                        //xel.
-                        foreach (Control tb in t.Controls)
-                        {
-                            if (tb is TextBox)
-                            {
-                                xel.AppendChild(xdoc.CreateNode(XmlNodeType.Element, tb.Name, tb.Name));
-                                xel.ChildNodes[0].InnerText = tb.Text;  
-                            }
-                        }
+                        xdoc.Load(ofd.FileName);
+                        ucSet.UveziXML(xdoc); 
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
             }
         }
     }

@@ -82,17 +82,24 @@ namespace DriverAutoInstall
             /*todo probati izmeniti help da se dobiju postojeci parametri, ako postoji mogucnost proveriti koji je
                    tip fajla u pitanju pa ih postaviti automatski*/
 
-            //ovo radi kod nekih fajlova ne kod svih
-            string fName = (sender as Button).Parent.Controls["tbPutanja"].Text;
-            Process proc = new Process
+            try
             {
-                StartInfo = new ProcessStartInfo
+                //ovo radi kod nekih fajlova ne kod svih
+                string fName = (sender as Button).Parent.Controls["tbPutanja"].Text;
+                Process proc = new Process
                 {
-                    FileName = fName,
-                    Arguments = "/?"
-                }
-            };
-            proc.Start();
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = fName,
+                        Arguments = "/?"
+                    }
+                };
+                proc.Start();
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "dParHelp");
+            }
         }
 
         private void dHHelp_Click(object sender, EventArgs e)
@@ -125,7 +132,14 @@ namespace DriverAutoInstall
 
         private void flpDriveri_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Copy;
+            try
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "DragEnter");
+            }
         }
 
         private void dUp_Click(object sender, EventArgs e)
@@ -245,17 +259,14 @@ namespace DriverAutoInstall
                 }
             }
         }
-
-        private void ucSetInstall_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
-
         private void dExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Dodaje novi tableLayoutPanel1 sa svim TextBox-ovima, Label-ima i Button-ima u flpDriveri
+        /// </summary>
         private void DodajKontrole()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -468,6 +479,8 @@ namespace DriverAutoInstall
                 sw.WriteLine(ex.ToString());
                 sw.WriteLine(sw.NewLine);
             }
+
+            MessageBox.Show(ex.ToString());
         }
 
         /// <summary>
@@ -499,6 +512,74 @@ namespace DriverAutoInstall
             catch (Exception ex)
             {
                 WriteLog(ex, "UpDown");
+            }
+        }
+
+        public void IzveziXML(XmlDocument xdoc)
+        {
+            try
+            {
+                xdoc.LoadXml("<driverAutoInstall></driverAutoInstall>");
+
+                XmlElement xel;
+                foreach (TableLayoutPanel t in flpDriveri.Controls)
+                {
+                    xel = xdoc.CreateElement("drv" + flpDriveri.Controls.IndexOf(t).ToString());
+
+                    int i = 0;
+                    foreach (Control tb in t.Controls)
+                    {
+                        if (tb is TextBox)
+                        {
+                            xel.AppendChild(xdoc.CreateNode(XmlNodeType.Element, tb.Name, tb.Name));
+                            xel.ChildNodes[i].InnerText = tb.Text;
+                            i++;
+                        }
+                    }
+
+                    xdoc.ChildNodes[0].AppendChild(xel);
+                }
+
+                using (SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "XML | *.xml"
+                })
+                {
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        xdoc.Save(sfd.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "IzveziXML");
+            }
+        }
+
+        public void UveziXML(XmlDocument xdc)
+        {
+            int i = -1;
+            try
+            {
+                foreach (XmlNode xn in xdc.ChildNodes[0].ChildNodes)
+                {
+                    DodajKontrole();
+                    int.TryParse(xn.Name.Replace("drv", ""), out i);
+
+                    if (i > -1)
+                    {
+                        foreach (XmlNode x in xn.ChildNodes)
+                        {
+                            flpDriveri.Controls[i].Controls[x.Name].Text = x.InnerText;
+                        }
+                    }
+                    i = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "UveziXML");
             }
         }
     }
