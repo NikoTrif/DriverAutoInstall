@@ -58,6 +58,7 @@
             // 
             // dDown
             // 
+            this.dDown.BackgroundImage = global::DriverAutoInstall.Properties.Resources.DownArrow;
             this.dDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dDown.Location = new System.Drawing.Point(4, 43);
             this.dDown.Margin = new System.Windows.Forms.Padding(4);
@@ -69,6 +70,7 @@
             // 
             // dUp
             // 
+            this.dUp.BackgroundImage = global::DriverAutoInstall.Properties.Resources.UpArrow;
             this.dUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dUp.Location = new System.Drawing.Point(4, 4);
             this.dUp.Margin = new System.Windows.Forms.Padding(4);
@@ -224,7 +226,7 @@
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem});
             this.cmsPutanja.Name = "cmsPutanja";
-            this.cmsPutanja.Size = new System.Drawing.Size(238, 110);
+            this.cmsPutanja.Size = new System.Drawing.Size(238, 82);
             // 
             // promeniPutanjuNalogaToolStripMenuItem
             // 
