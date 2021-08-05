@@ -19,6 +19,7 @@ namespace DriverAutoInstall
             InitializeComponent();
         }
 
+        //Dugmad
         private void dAdd_Click(object sender, EventArgs e)
         {
             DodajKontrole();
@@ -116,37 +117,11 @@ namespace DriverAutoInstall
             }
         }
 
-        private void flpDriveri_DragDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] fajl = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                foreach(string s in fajl)
-                {
-                    DodajKontrole();
-                    Upis(flpDriveri.Controls[flpDriveri.Controls.Count -1] as TableLayoutPanel, s);
-                }
-            }
-        }
-
-        private void flpDriveri_DragEnter(object sender, DragEventArgs e)
-        {
-            try
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            catch (Exception ex)
-            {
-                WriteLog(ex, "DragEnter");
-            }
-        }
-
         private void dUp_Click(object sender, EventArgs e)
         {
             if (flpDriveri.Controls.Count != 0)
             {
-                UpDown(true); 
+                UpDown(true);
             }
         }
 
@@ -154,7 +129,7 @@ namespace DriverAutoInstall
         {
             if (flpDriveri.Controls.Count != 0)
             {
-                UpDown(false); 
+                UpDown(false);
             }
         }
 
@@ -196,13 +171,13 @@ namespace DriverAutoInstall
                         fin.lNum.Text = string.Format("{0} / {1}", i.ToString(), flpDriveri.Controls.Count);
 
                         inst.Start();
-                        
+
                         //kada se u finst pritisne Cancel prekidaju se instalacije
                         while (!inst.HasExited)
                         {
                             Thread.Sleep(100);
                             Application.DoEvents();
-                            
+
                             if (fin.DialogResult == DialogResult.Cancel)
                             {
                                 inst.Kill();
@@ -212,14 +187,14 @@ namespace DriverAutoInstall
                                 MessageBox.Show("Aborted by user", "Aborted", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                 cancClicked = true;
                                 break;
-                            } 
+                            }
                         }
 
                         if (cancClicked)
                         {
                             break;
                         }
-                        
+
                         fin.pbInstall.PerformStep();
                         instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
                         i++;
@@ -265,6 +240,34 @@ namespace DriverAutoInstall
             Application.Exit();
         }
 
+        //FlowLayoutPanel
+        private void flpDriveri_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] fajl = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach(string s in fajl)
+                {
+                    DodajKontrole();
+                    Upis(flpDriveri.Controls[flpDriveri.Controls.Count -1] as TableLayoutPanel, s);
+                }
+            }
+        }
+
+        private void flpDriveri_DragEnter(object sender, DragEventArgs e)
+        {
+            try
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex, "DragEnter");
+            }
+        }
+
+        //ToolStripMenu
         private void uveziXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UveziXML();
@@ -280,6 +283,7 @@ namespace DriverAutoInstall
             dExit.PerformClick();
         }
 
+        //ContextMenuStrip
         private void promeniOvdeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -308,6 +312,16 @@ namespace DriverAutoInstall
             {
                 WriteLog(ex, "promeniSvudaToolStripMenuItem_Click");
             }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText((ActiveControl as TextBox).SelectedText);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.GetText();
         }
 
         /// <summary>
