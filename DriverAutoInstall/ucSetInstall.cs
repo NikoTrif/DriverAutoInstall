@@ -294,7 +294,6 @@ namespace DriverAutoInstall
 
         private void promeniSvudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ne radi
             try
             {
                 string oldUserPath = (ActiveControl as TextBox).SelectedText;
@@ -302,7 +301,7 @@ namespace DriverAutoInstall
 
                 foreach (TableLayoutPanel tlp in flpDriveri.Controls)
                 {
-                    tlp.Controls["tbPutanja"].Text.Replace(oldUserPath, newUserPath);
+                    tlp.Controls["tbPutanja"].Text = tlp.Controls["tbPutanja"].Text.Replace(oldUserPath, newUserPath);
                 }
             }
             catch(Exception ex)
