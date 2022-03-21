@@ -13,10 +13,24 @@ namespace DriverAutoInstall
     {
         int leavedIndex = 0;
         bool delCtrlVisible = false;
+        string arg = "";
         
-        public ucSetInstall()
+        public ucSetInstall(string argument = "")
         {
             InitializeComponent();
+
+            if (argument != "")
+            {
+                arg = argument;
+            }
+        }
+
+        private void ucSetInstall_Load(object sender, EventArgs e)
+        {
+            if (arg != "")
+            {
+
+            }
         }
 
         //Dugmad
@@ -139,6 +153,7 @@ namespace DriverAutoInstall
 
             if (flpDriveri.Controls.Count != 0)
             {
+                XmlDocument xdoc = new XmlDocument();
                 Process inst;
                 int i = 1;
                 List<string> instalirano = new List<string>();
@@ -150,6 +165,9 @@ namespace DriverAutoInstall
                 fin.pbInstall.Maximum = flpDriveri.Controls.Count;
                 fin.pbInstall.Minimum = 1;
                 fin.pbInstall.Step = 1;
+
+                NapraviXML(xdoc);
+                xdoc.Save("installed.xml");
 
                 fin.Show();
 
@@ -197,6 +215,9 @@ namespace DriverAutoInstall
 
                         fin.pbInstall.PerformStep();
                         instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
+                        //ovde postoji greska - ovde sam stao
+                        xdoc.SelectSingleNode($"\\drv[@flpIndex='{i}']").Attributes["finished"].Value = "true";
+                        xdoc.Save("installed.xml");
                         i++;
                     }
 
@@ -581,26 +602,7 @@ namespace DriverAutoInstall
             XmlDocument xdoc = new XmlDocument();
             try
             {
-                xdoc.LoadXml("<driverAutoInstall></driverAutoInstall>");
-
-                XmlElement xel;
-                foreach (TableLayoutPanel t in flpDriveri.Controls)
-                {
-                    xel = xdoc.CreateElement("drv" + flpDriveri.Controls.IndexOf(t).ToString());
-
-                    int i = 0;
-                    foreach (Control tb in t.Controls)
-                    {
-                        if (tb is TextBox)
-                        {
-                            xel.AppendChild(xdoc.CreateNode(XmlNodeType.Element, tb.Name, tb.Name));
-                            xel.ChildNodes[i].InnerText = tb.Text;
-                            i++;
-                        }
-                    }
-
-                    xdoc.ChildNodes[0].AppendChild(xel);
-                }
+                NapraviXML(xdoc);
 
                 using (SaveFileDialog sfd = new SaveFileDialog
                 {
@@ -619,10 +621,36 @@ namespace DriverAutoInstall
             }
         }
 
+        private void NapraviXML(XmlDocument xdoc)
+        {
+            xdoc.LoadXml("<driverAutoInstall></driverAutoInstall>");
+
+            XmlElement xel;
+            foreach (TableLayoutPanel t in flpDriveri.Controls)
+            {
+                //xel = xdoc.CreateElement("drv" + flpDriveri.Controls.IndexOf(t).ToString());
+                xel = xdoc.CreateElement("drv");
+                xel.SetAttribute("flpIndex", flpDriveri.Controls.IndexOf(t).ToString());
+                xel.SetAttribute("finished", "false");
+
+                int i = 0;
+                foreach (Control tb in t.Controls)
+                {
+                    if (tb is TextBox)
+                    {
+                        xel.AppendChild(xdoc.CreateNode(XmlNodeType.Element, tb.Name, tb.Name));
+                        xel.ChildNodes[i].InnerText = tb.Text;
+                        i++;
+                    }
+                }
+
+                xdoc.ChildNodes[0].AppendChild(xel);
+            }
+        }
+
         public void UveziXML()
         {
             XmlDocument xdc = new XmlDocument();
-            int i = -1;
             try
             {
                 using (OpenFileDialog ofd = new OpenFileDialog
@@ -632,21 +660,7 @@ namespace DriverAutoInstall
                 {
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        xdc.Load(ofd.FileName);
-                        foreach (XmlNode xn in xdc.ChildNodes[0].ChildNodes)
-                        {
-                            DodajKontrole();
-                            int.TryParse(xn.Name.Replace("drv", ""), out i);
-
-                            if (i > -1)
-                            {
-                                foreach (XmlNode x in xn.ChildNodes)
-                                {
-                                    flpDriveri.Controls[i].Controls[x.Name].Text = x.InnerText;
-                                }
-                            }
-                            i = -1;
-                        } 
+                        OtvoriXML(xdc, ofd.FileName);
                     }
                 }
             }
@@ -654,6 +668,32 @@ namespace DriverAutoInstall
             {
                 WriteLog(ex, "UveziXML");
             }
+        }
+
+        private void OtvoriXML(XmlDocument xdc, string fileName)
+        {
+            xdc.Load(fileName);
+            int i = -1;
+            foreach (XmlNode xn in xdc.ChildNodes[0].ChildNodes)
+            {
+                DodajKontrole();
+                //int.TryParse(xn.Name.Replace("drv", ""), out i);
+                int.TryParse(xn.Attributes["flpIndex"].Value, out i);
+
+                if (i > -1)
+                {
+                    foreach (XmlNode x in xn.ChildNodes)
+                    {
+                        flpDriveri.Controls[i].Controls[x.Name].Text = x.InnerText;
+                    }
+                }
+                i = -1;
+            }
+        }
+
+        private void AutoStart()
+        {
+
         }
     }
 }

@@ -285,6 +285,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSetInstall";
             this.Size = new System.Drawing.Size(769, 409);
+            this.Load += new System.EventHandler(this.ucSetInstall_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

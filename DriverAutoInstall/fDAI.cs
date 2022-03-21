@@ -13,9 +13,16 @@ namespace DriverAutoInstall
     public partial class fDAI : Form
     {
         ucSetInstall ucSet = new ucSetInstall();
-        public fDAI()
+        string arg = "";
+        
+        public fDAI(string[] argument)
         {
             InitializeComponent();
+
+            if (argument.Length != 0)
+            {
+                arg = argument[0];
+            }
         }
 
         private void fDAI_Load(object sender, EventArgs e)
