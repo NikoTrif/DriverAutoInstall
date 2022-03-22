@@ -14,6 +14,7 @@ namespace DriverAutoInstall
         int leavedIndex = 0;
         bool delCtrlVisible = false;
         string arg = "";
+        XmlDocument docDefault = new XmlDocument(); //ovde sam stao... treba da se loaduje ako postoji installed.xml
         
         public ucSetInstall(string argument = "")
         {
@@ -155,7 +156,7 @@ namespace DriverAutoInstall
             {
                 XmlDocument xdoc = new XmlDocument();
                 Process inst;
-                int i = 1;
+                int i = 0;
                 List<string> instalirano = new List<string>();
                 List<string> saGreskom = new List<string>();
 
@@ -166,8 +167,11 @@ namespace DriverAutoInstall
                 fin.pbInstall.Minimum = 1;
                 fin.pbInstall.Step = 1;
 
-                NapraviXML(xdoc);
-                xdoc.Save("installed.xml");
+                if (docDefault.OuterXml == "")
+                {
+                    NapraviXML(xdoc);
+                    xdoc.Save("instalirano.xml");
+                }
 
                 fin.Show();
 
@@ -175,49 +179,52 @@ namespace DriverAutoInstall
                 {
                     try
                     {
-                        inst = new Process
-
+                        if (!bool.Parse(xdoc.SelectSingleNode($"//drv[@flpIndex'{i}']").Attributes["finished"].Value));
                         {
-                            StartInfo = new ProcessStartInfo
+                            inst = new Process
+
                             {
-                                FileName = (c.Controls["tbPutanja"] as TextBox).Text,
-                                Arguments = (c.Controls["tbParametri"] as TextBox).Text
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = (c.Controls["tbPutanja"] as TextBox).Text,
+                                    Arguments = (c.Controls["tbParametri"] as TextBox).Text
+                                }
+                            };
+
+                            fin.lCurrentDrv.Text = (c.Controls["tbNaziv"] as TextBox).Text;
+                            fin.lNum.Text = string.Format("{0} / {1}", i.ToString(), flpDriveri.Controls.Count);
+
+                            inst.Start();
+
+                            //kada se u finst pritisne Cancel prekidaju se instalacije
+                            while (!inst.HasExited)
+                            {
+                                Thread.Sleep(100);
+                                Application.DoEvents();
+
+                                if (fin.DialogResult == DialogResult.Cancel)
+                                {
+                                    inst.Kill();
+                                    inst.Close();
+                                    inst.Dispose();
+                                    fin.Close();
+                                    MessageBox.Show("Aborted by user", "Aborted", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    cancClicked = true;
+                                    break;
+                                }
                             }
-                        };
 
-                        fin.lCurrentDrv.Text = (c.Controls["tbNaziv"] as TextBox).Text;
-                        fin.lNum.Text = string.Format("{0} / {1}", i.ToString(), flpDriveri.Controls.Count);
-
-                        inst.Start();
-
-                        //kada se u finst pritisne Cancel prekidaju se instalacije
-                        while (!inst.HasExited)
-                        {
-                            Thread.Sleep(100);
-                            Application.DoEvents();
-
-                            if (fin.DialogResult == DialogResult.Cancel)
+                            if (cancClicked)
                             {
-                                inst.Kill();
-                                inst.Close();
-                                inst.Dispose();
-                                fin.Close();
-                                MessageBox.Show("Aborted by user", "Aborted", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                cancClicked = true;
                                 break;
                             }
-                        }
 
-                        if (cancClicked)
-                        {
-                            break;
-                        }
+                            fin.pbInstall.PerformStep();
+                            instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
 
-                        fin.pbInstall.PerformStep();
-                        instalirano.Add((c.Controls["tbNaziv"] as TextBox).Text);
-                        //ovde postoji greska - ovde sam stao
-                        xdoc.SelectSingleNode($"\\drv[@flpIndex='{i}']").Attributes["finished"].Value = "true";
-                        xdoc.Save("installed.xml");
+                            xdoc.SelectSingleNode($"//drv[@flpIndex='{i}']").Attributes["finished"].Value = "true";
+                            xdoc.Save("installed.xml"); 
+                        }
                         i++;
                     }
 
