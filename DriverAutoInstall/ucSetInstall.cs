@@ -28,9 +28,12 @@ namespace DriverAutoInstall
 
         private void ucSetInstall_Load(object sender, EventArgs e)
         {
-            if (arg != "")
+            if (arg == "-continue")
             {
-
+                if (File.Exists("installed.xml"))
+                {
+                    //orvori xml
+                }
             }
         }
 
@@ -170,7 +173,7 @@ namespace DriverAutoInstall
                 if (docDefault.OuterXml == "")
                 {
                     NapraviXML(xdoc);
-                    xdoc.Save("instalirano.xml");
+                    xdoc.Save("installed.xml");
                 }
 
                 fin.Show();
